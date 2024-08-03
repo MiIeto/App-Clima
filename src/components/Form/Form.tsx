@@ -53,7 +53,7 @@ export default function Form({ fetchWeather }: FormProps) {
 				/>
 			</div>
 			<div className={styles.field}>
-				<label htmlFor='country'>Pais:"</label>
+				<label htmlFor='country'>Pais:</label>
 				<select
 					id='country'
 					name='country'
