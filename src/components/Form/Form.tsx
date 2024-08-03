@@ -1,23 +1,42 @@
-import styles from "./Form.module.css"
+import { ChangeEvent, useState } from 'react';
+import styles from './Form.module.css';
 import { countries } from '../../data/countries';
+import { SearchType } from '../../types';
 
 export default function Form() {
+	const [search, setSearch] = useState<SearchType>({
+		city: '',
+		country: '',
+	});
+
+	const handleChange = (
+		e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>
+	) => {
+		setSearch({
+			...search,
+			[e.target.name]: e.target.value,
+		});
+	};
 	return (
 		<form className={styles.form}>
 			<div className={styles.field}>
 				<label htmlFor='city'>Ciudad:</label>
 				<input
 					id='city'
-					type='text'
 					name='city'
+					type='text'
 					placeholder='Ciudad'
+					value={search.city}
+					onChange={handleChange}
 				/>
 			</div>
 			<div className={styles.field}>
 				<label htmlFor='country'>Pais:"</label>
 				<select
-					name='country'
 					id='country'
+					name='country'
+					value={search.country}
+					onChange={handleChange}
 				>
 					<option value=''>-- Seleccione un Pais</option>
 					{countries.map((country) => (
@@ -33,7 +52,7 @@ export default function Form() {
 			<input
 				type='submit'
 				value='Consultar Clima'
-                className={styles.submit}
+				className={styles.submit}
 			/>
 		</form>
 	);
