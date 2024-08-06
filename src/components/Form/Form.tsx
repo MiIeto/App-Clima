@@ -34,6 +34,7 @@ export default function Form({ fetchWeather }: FormProps) {
 		}
 
 		fetchWeather(search);
+		setAlert('');
 	};
 	return (
 		<form
